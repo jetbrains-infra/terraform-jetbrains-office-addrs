@@ -7,6 +7,6 @@ data "http" "jetbrains_office_addrs" {
 }
 
 locals {
-  response               = jsondecode(data.http.jetbrains_office_addrs.body)
+  response               = jsondecode(data.http.jetbrains_office_addrs.response_body)
   jetbrains_office_addrs = split("\n", replace(join("\n", local.response.results.*.address), "/\\/\\S+/", ""))
 }
